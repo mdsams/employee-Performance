@@ -1,0 +1,29 @@
+# Employee Rating Dashboard
+
+## Overview
+The Employee Rating Dashboard is a web application that allows users to analyze employee reviews, calculate average stay times, and track course completion percentages. The app utilizes sentiment analysis to provide a review rating for employees based on customer feedback.
+
+## Features
+- Analyze employee reviews and assign sentiment ratings.
+- Calculate average stay duration and percentage.
+- Track course completion rates for employees.
+- User-friendly web interface built with Flask.
+
+## Technologies Used
+- **Flask**: A lightweight WSGI web application framework for Python.
+- **Pandas**: A data analysis and manipulation library for Python.
+- **NLTK**: Natural Language Toolkit for processing human language data.
+- **Google Generative AI**: Used for enhanced sentiment analysis (make sure to configure your API key).
+- **HTML/CSS**: For front-end design and layout.
+
+## Requirements
+To set up the project, ensure you have Python installed and optional(create a virtual environment). Then install the necessary packages using the following command in the terminal:
+
+'''
+pip install -r requirements.txt
+'''
+
+## Notes:
+- **Version Numbers**: The version numbers above are examples; you may want to check for the latest versions or match them with your existing environment.
+- **Dependencies**: Ensure you have installed nltk data for sentiment analysis by running nltk.download('vader_lexicon') in your Python environment.
+- **Google Generative AI**: Make sure to check the actual package name and version for the Google Generative AI library as it might differ.

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Metrics Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            position: relative;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .background-image {
+            background-image: url('https://static.vecteezy.com/system/resources/previews/021/724/423/non_2x/business-team-of-employees-illustration-vector.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            filter: brightness(0.5);
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            z-index: 1;
+        }
+        .content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            color: #333;
+        }
+        h2 {
+            text-align: center;
+            color: white;
+        }
+        .results {
+            background-color: black;
+            padding: 20px;
+            border-radius: 50px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .feedback {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 20px;
+            border: 1px solid #ced4da;
+        }
+        #myBarChart, #myPieChart {
+            max-width: 600px;
+            margin: 20px auto;
+        }
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: red;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .chart-container {
+        display: flex; /* Use flexbox */
+        justify-content: center;
+        margin-left: -50px; /* Space charts evenly */ /* Center them vertically */
+        max-width: 300px; /* Set a max width for the container */
+        margin:0 auto; /* Center the container on the page */
+        }
+
+        canvas {
+        max-width: 50px; /* Limit the width of each chart */
+        flex: 1; /* Allow charts to grow equally */
+        margin: 0 10px; /* Add some space between charts */
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="background-image"></div>
+    <div class="content">
+        <h2 align="center">Employee Performance Dashboard<h2>
+        <div class="results">
+            <div class="chart-container">
+                <canvas id="myBarChart"></canvas>
+                <canvas id="myPieChart"></canvas>
+            </div>
+            <form method="POST" action="/dashboard">
+                <input type="hidden" name="name" value="{{ name }}">
+                <button type="submit">View Info</button>
+            </form>
+            <a href="/">Back to Search</a>
+        </div>
+    </div>
+    <script>
+        // Bar Chart
+        const barCtx = document.getElementById('myBarChart').getContext('2d');
+        const barChart = new Chart(barCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Review Rating', 'Average Stay Time (hrs)', 'Stay Percentage (%)', 'Course Completion (%)'],
+                datasets: [{
+                    label: 'Employee Performance Metrics',
+                    data: [{{ review_rating }}, {{ average_stay }}, {{ stay_percentage }}, {{ course_completion_percentage }}],
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        ticks: {
+                            color: 'white' // Set the color of the X-axis labels
+                        }// Set the color of the X-axis line to white
+                    },
+                    y: {
+                        ticks: {
+                            color: 'white' // Set the color of the Y-axis labels
+                        }
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                        titleColor: 'white',  // Set the color of the tooltip title
+                        bodyColor: 'white'    // Set the color of the tooltip body
+                    },
+                // Displaying data values on top of each bar
+                    datalabels: {
+                        color: 'white',  // Set the color of the data labels (if using chart.js plugin datalabels)
+                        align: 'top',
+                        font: {
+                            weight: 'bold'
+                        }
+                    }
+                }
+            }
+        });
+
+
+        // Pie Chart
+        const pieCtx = document.getElementById('myPieChart').getContext('2d');
+        const pieChart = new Chart(pieCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Course Completed', 'Course Not Completed'],
+                datasets: [{
+                    label: 'Course Completion',
+                    data: [{{ course_completion_percentage }}, 100 - {{ course_completion_percentage }}],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(255, 99, 132, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            color: 'white', // Set legend label color to white
+                        }
+                    },
+                    tooltip: {
+                        titleColor: 'white', // Set tooltip title color to white
+                        bodyColor: 'white',  // Set tooltip body color to white
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>

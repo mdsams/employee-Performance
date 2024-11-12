@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Rating Lookup</title>
+    <style>
+         body {
+                font-family: Arial, sans-serif;
+                position: relative; /* Make the body relative to position the overlay */
+                margin: 0;
+                padding: 0;
+                height: 100vh; /* Full height */
+                overflow: hidden; /* Prevent scrollbars */
+        }
+
+        .background-image {
+                background-image: url('https://static.vecteezy.com/system/resources/previews/021/724/423/non_2x/business-team-of-employees-illustration-vector.jpg');
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
+                filter: brightness(0.3);
+                height: 100%;
+                width: 100%;
+                position: absolute; /* Positioning for overlay */
+                z-index: 1; /* Ensure it's behind the content */
+            }
+
+        /* Content styles */
+        .content {
+                position: relative; /* Allow content to appear above the overlay */
+                z-index: 3;
+                text-align: center;
+                color: #333; /* Text color */
+            }
+
+        h1{
+             text-align: center;
+             color: #333;
+            }
+
+        form {
+              background-color: #fff;
+              padding: 20px;
+              border-radius: 4px;
+              box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+              max-width: 400px;
+              margin: 0 auto;
+             }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            }
+
+        input[type="text"] {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            }
+
+        button:hover {
+            background-color: #218838;
+            }
+
+        h3 {
+            text-align: center;
+            color: white;
+            padding: 50px;
+           }
+
+        p {
+            text-align: center;
+            font-size: 1.2em;
+          }
+    </style>
+</head>
+<body>
+    <div class="background-image"></div>
+    <div class="content">
+        <h3 align="center">Employee Rating Dashboard<h3>
+        <form method="POST" action="/results">
+            <input type="text" name="name" placeholder="Enter Name" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>  
+</body>
+</html>

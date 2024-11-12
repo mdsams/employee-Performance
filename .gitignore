@@ -1,0 +1,13 @@
+# *
+# !templates
+# !templates/** 
+# !analysis.py
+# !app.py
+# !README
+# !requirements.txt
+# !Untitled spreadsheet.xlsx
+# !.gitignore
+
+__pycache__
+.venv
+.env

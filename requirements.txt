@@ -1,0 +1,7 @@
+Flask
+pandas
+nltk
+openpyxl
+python-dotenv
+google-generativeai # Update this based on the actual version available
+
